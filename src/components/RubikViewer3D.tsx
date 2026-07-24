@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Rubik3DRenderer } from '../lib/rubik/rubik3d';
+import { Rubik3DRenderer } from '../lib/rubik/rubik3d.ts';
 import { MoveNotation } from '../types';
-import { MOVE_DESCRIPTIONS_ES, generateScramble } from '../lib/rubik/cubeState';
+import { MOVE_DESCRIPTIONS_ES, generateScramble } from '../lib/rubik/cubeState.ts';
 import { Play, Pause, RotateCcw, Shuffle, FastForward, Eye, Sparkles, CheckCircle2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 

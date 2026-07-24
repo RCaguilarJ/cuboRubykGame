@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MoveNotation } from '../types';
-import { MOVE_DESCRIPTIONS_ES } from '../lib/rubik/cubeState';
+import { MOVE_DESCRIPTIONS_ES } from '../lib/rubik/cubeState.ts';
 import { RubikViewer3D } from './RubikViewer3D';
 import { BookOpen, Box, Move, CheckCircle2, Info } from 'lucide-react';
 

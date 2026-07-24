@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { ColorCode, MoveNotation } from '../../types';
-import { COLOR_HEX_MAP } from './cubeState';
+import { COLOR_HEX_MAP } from './cubeState.ts';
 
 export interface Rubik3DOptions {
   container: HTMLDivElement;

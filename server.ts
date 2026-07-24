@@ -1,11 +1,10 @@
 import express from "express";
 import path from "path";
-import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT) || 3000;
 
   // Middleware for JSON payload (large enough for base64 images)
   app.use(express.json({ limit: "25mb" }));
@@ -109,6 +108,7 @@ Importante: Los movimientos en 'moves' deben usar únicamente notación oficial 
 
   // Vite middleware setup
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
@@ -117,14 +117,22 @@ Importante: Los movimientos en 'moves' deben usar únicamente notación oficial 
   } else {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
-    app.get("*", (_req, res) => {
+    app.use((_req, res) => {
       res.sendFile(path.join(distPath, "index.html"));
     });
   }
 
-  app.listen(PORT, "0.0.0.0", () => {
+  const server = app.listen(PORT, "0.0.0.0", () => {
     console.log(`Rubik Solver 3D Server running on http://localhost:${PORT}`);
+  });
+
+  server.on("error", (error) => {
+    console.error("Unable to start the HTTP server:", error);
+    process.exitCode = 1;
   });
 }
 
-startServer();
+startServer().catch((error) => {
+  console.error("Application startup failed:", error);
+  process.exitCode = 1;
+});
