@@ -2,6 +2,19 @@ import express from "express";
 import path from "path";
 import { GoogleGenAI } from "@google/genai";
 
+let solverInitialization: Promise<any> | null = null;
+
+async function getCubeSolver() {
+  if (!solverInitialization) {
+    solverInitialization = import("cubejs").then((module) => {
+      const Cube = (module as any).default || module;
+      Cube.initSolver();
+      return Cube;
+    });
+  }
+  return solverInitialization;
+}
+
 async function startServer() {
   const app = express();
   const PORT = Number(process.env.PORT) || 3000;
@@ -28,6 +41,33 @@ async function startServer() {
   // Health check endpoint
   app.get("/api/health", (_req, res) => {
     res.json({ status: "ok", time: new Date().toISOString() });
+  });
+
+  app.post("/api/solve-cube", async (req, res) => {
+    try {
+      const { facelets } = req.body as { facelets?: string };
+      if (!facelets || !/^[URFDLB]{54}$/.test(facelets)) {
+        return res.status(400).json({ success: false, error: "El estado debe contener exactamente 54 casillas válidas." });
+      }
+
+      for (const face of ["U", "R", "F", "D", "L", "B"]) {
+        if ([...facelets].filter((value) => value === face).length !== 9) {
+          return res.status(400).json({ success: false, error: `El color ${face} debe aparecer exactamente 9 veces.` });
+        }
+      }
+
+      const Cube = await getCubeSolver();
+      const cube = Cube.fromString(facelets);
+      const algorithm = cube.isSolved() ? "" : cube.solve();
+      const moves = algorithm.trim() ? algorithm.trim().split(/\s+/) : [];
+      res.json({ success: true, algorithm, moves, moveCount: moves.length });
+    } catch (error: any) {
+      console.error("Invalid cube state:", error);
+      res.status(422).json({
+        success: false,
+        error: "El estado no es físicamente posible. Revisa colores, centros y orientación de las seis caras.",
+      });
+    }
   });
 
   // Multimodal Gemini API route for Rubik's cube photo analysis & troubleshooting

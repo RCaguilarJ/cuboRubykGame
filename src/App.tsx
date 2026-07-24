@@ -4,6 +4,7 @@ import { StepByStepGuide } from './components/StepByStepGuide';
 import { PhotoScanner } from './components/PhotoScanner';
 import { RubikViewer3D } from './components/RubikViewer3D';
 import { NotationGuide } from './components/NotationGuide';
+import { RealCubeSolver } from './components/RealCubeSolver';
 import { Box, Heart } from 'lucide-react';
 
 export default function App() {
@@ -29,6 +30,8 @@ export default function App() {
         {activeTab === 'scanner' && (
           <PhotoScanner initialStageName={selectedStepForScanner} />
         )}
+
+        {activeTab === 'solver' && <RealCubeSolver />}
 
         {activeTab === '3d-canvas' && (
           <div className="space-y-6">

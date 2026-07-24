@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box, Camera, BookOpen, Layers, HelpCircle, Sparkles } from 'lucide-react';
+import { Box, Camera, BookOpen, Layers, Sparkles } from 'lucide-react';
 
-export type ActiveTab = 'tutorial' | 'scanner' | '3d-canvas' | 'notation';
+export type ActiveTab = 'tutorial' | 'solver' | 'scanner' | '3d-canvas' | 'notation';
 
 interface NavbarProps {
   activeTab: ActiveTab;
@@ -30,6 +30,18 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 
         {/* Navigation Tabs */}
         <nav aria-label="Navegación principal" className="mobile-edge-scroll w-full sm:w-auto flex items-center justify-around sm:justify-start gap-1 sm:gap-2 overflow-x-auto pb-0.5 sm:pb-0">
+          <button
+            id="nav-tab-solver"
+            onClick={() => setActiveTab('solver')}
+            className={`flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
+              activeTab === 'solver'
+                ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30'
+                : 'text-slate-300 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            <Sparkles className="w-4 h-4 text-emerald-300" />
+            <span className="hidden md:inline">Solución exacta</span>
+          </button>
           <button
             id="nav-tab-tutorial"
             onClick={() => setActiveTab('tutorial')}
