@@ -1,0 +1,6 @@
+{
+  "name": "Rubik Solver 3D",
+  "description": "Asistente interactivo 3D para resolver el Cubo Rubik paso a paso con escáner de fotos por cámara y guía explicativa por capas.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
