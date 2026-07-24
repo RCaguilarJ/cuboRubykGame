@@ -6,7 +6,7 @@ let solverInitialization: Promise<any> | null = null;
 
 async function getCubeSolver() {
   if (!solverInitialization) {
-    solverInitialization = import("cubejs").then((module) => {
+    solverInitialization = import("./vendor/cubejs/index.cjs").then((module) => {
       const Cube = (module as any).default || module;
       Cube.initSolver();
       return Cube;
