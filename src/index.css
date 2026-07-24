@@ -35,7 +35,7 @@ input {
 
 @media (max-width: 639px) {
   .mobile-edge-scroll {
-    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   .mobile-edge-scroll::-webkit-scrollbar {
