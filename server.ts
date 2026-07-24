@@ -17,7 +17,7 @@ async function getCubeSolver() {
 
 async function startServer() {
   const app = express();
-  const PORT = Number(process.env.PORT) || 3000;
+  const PORT = 3000;
 
   // Middleware for JSON payload (large enough for base64 images)
   app.use(express.json({ limit: "25mb" }));
