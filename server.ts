@@ -1,5 +1,7 @@
 import express from "express";
+import fs from "fs";
 import path from "path";
+import zlib from "zlib";
 import { GoogleGenAI } from "@google/genai";
 
 let solverInitialization: Promise<any> | null = null;
@@ -8,7 +10,14 @@ async function getCubeSolver() {
   if (!solverInitialization) {
     solverInitialization = import("./vendor/cubejs/index.cjs").then((module) => {
       const Cube = (module as any).default || module;
-      Cube.initSolver();
+      if (process.env.NODE_ENV === "production") {
+        const tablesPath = path.join(__dirname, "solver-tables.json.gz");
+        const tables = JSON.parse(zlib.gunzipSync(fs.readFileSync(tablesPath)).toString("utf8"));
+        Cube.moveTables = tables.moveTables;
+        Cube.pruningTables = tables.pruningTables;
+      } else {
+        Cube.initSolver();
+      }
       return Cube;
     });
   }
