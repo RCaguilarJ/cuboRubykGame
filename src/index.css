@@ -1,17 +1,52 @@
 @import "tailwindcss";
 
 html {
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
 }
 
 body {
-  min-width: 320px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
   overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+span {
+  overflow-wrap: anywhere;
 }
 
 button,
 select,
 input {
+  max-width: 100%;
   touch-action: manipulation;
 }
 

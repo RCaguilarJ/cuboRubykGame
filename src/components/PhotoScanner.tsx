@@ -120,7 +120,7 @@ export const PhotoScanner: React.FC<PhotoScannerProps> = ({ initialStageName }) 
   };
 
   return (
-    <div className="space-y-5 sm:space-y-8 max-w-5xl min-w-0 mx-auto">
+    <div className="w-full min-w-0 space-y-5 sm:space-y-8">
       {/* Scanner Header Banner */}
       <div className="bg-slate-900 border border-slate-800 rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-2xl relative overflow-hidden">
         <div className="max-w-3xl space-y-3">

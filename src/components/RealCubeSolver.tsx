@@ -134,7 +134,7 @@ export const RealCubeSolver: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto space-y-5 sm:space-y-8">
+    <div className="w-full min-w-0 space-y-5 sm:space-y-8">
       <section className="rounded-2xl sm:rounded-3xl border border-indigo-500/30 bg-gradient-to-br from-slate-900 via-indigo-950/80 to-slate-900 p-4 sm:p-8 shadow-2xl">
         <div className="max-w-4xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-bold text-emerald-300">
@@ -148,8 +148,8 @@ export const RealCubeSolver: React.FC = () => {
         </div>
       </section>
 
-      <div className="grid grid-cols-1 xl:grid-cols-12 gap-5 lg:gap-8">
-        <section className="xl:col-span-8 rounded-2xl border border-slate-800 bg-slate-900 p-4 sm:p-6 shadow-xl">
+      <div className="grid w-full min-w-0 grid-cols-1 xl:grid-cols-12 gap-5 lg:gap-8">
+        <section className="min-w-0 xl:col-span-8 rounded-2xl border border-slate-800 bg-slate-900 p-3 min-[380px]:p-4 sm:p-6 shadow-xl">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-4">
             <div>
               <h3 className="font-bold text-white">1. Selecciona un color y pinta cada cara</h3>
@@ -172,7 +172,7 @@ export const RealCubeSolver: React.FC = () => {
 
           <div className="mt-5 grid grid-cols-1 min-[430px]:grid-cols-2 lg:grid-cols-3 gap-4">
             {FACES.map((face) => (
-              <div key={face.id} className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
+              <div key={face.id} className="min-w-0 rounded-xl border border-slate-800 bg-slate-950/60 p-3">
                 <div className="mb-3 flex items-center justify-between">
                   <div>
                     <p className="text-sm font-bold text-white">{face.id} · {face.name}</p>
@@ -180,7 +180,7 @@ export const RealCubeSolver: React.FC = () => {
                   </div>
                   <span className="rounded-md bg-slate-800 px-2 py-1 text-[10px] font-mono text-slate-300">{face.id}</span>
                 </div>
-                <div className="mx-auto grid max-w-[190px] grid-cols-3 gap-1.5">
+                <div className="mx-auto grid w-full max-w-[190px] grid-cols-3 gap-1.5">
                   {stickers[face.id].map((color, index) => (
                     <button
                       key={index}
@@ -214,7 +214,7 @@ export const RealCubeSolver: React.FC = () => {
           </div>
         </section>
 
-        <aside className="xl:col-span-4 space-y-5">
+        <aside className="min-w-0 xl:col-span-4 space-y-5">
           <div className="rounded-2xl border border-slate-800 bg-slate-900 p-4 sm:p-5 shadow-xl">
             <h3 className="font-bold text-white">Conteo de colores</h3>
             <div className="mt-3 grid grid-cols-2 gap-2">

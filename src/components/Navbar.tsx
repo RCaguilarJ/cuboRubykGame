@@ -10,8 +10,8 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
   return (
-    <header className="bg-slate-900 border-b border-slate-800 text-white sticky top-0 z-50 backdrop-blur-md bg-opacity-90">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 sm:h-16 sm:py-0 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+    <header className="w-full min-w-0 overflow-x-hidden bg-slate-900 border-b border-slate-800 text-white sticky top-0 z-50 backdrop-blur-md bg-opacity-90">
+      <div className="w-full min-w-0 px-3 sm:px-5 md:px-6 lg:px-8 2xl:px-10 py-2 sm:min-h-16 sm:py-0 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         {/* Brand Logo & Name */}
         <div 
           className="flex w-full sm:w-auto items-center space-x-3 cursor-pointer group"
@@ -20,7 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
           <div className="w-9 h-9 sm:w-10 sm:h-10 shrink-0 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-200">
             <Box className="w-6 h-6 text-white" />
           </div>
-          <div>
+          <div className="min-w-0">
             <h1 className="font-bold text-base sm:text-lg tracking-tight text-slate-100 flex flex-wrap items-center gap-1.5">
               Rubik Solver <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-400 font-medium border border-indigo-500/30">3D IA</span>
             </h1>
@@ -29,7 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
         </div>
 
         {/* Navigation Tabs */}
-        <nav aria-label="Navegación principal" className="mobile-edge-scroll w-full sm:w-auto flex items-center justify-around sm:justify-start gap-1 sm:gap-2 overflow-x-auto pb-0.5 sm:pb-0">
+        <nav aria-label="Navegación principal" className="mobile-edge-scroll w-full min-w-0 sm:w-auto flex items-center justify-around sm:justify-start gap-1 sm:gap-2 overflow-x-auto overscroll-x-contain pb-0.5 sm:pb-0">
           <button
             id="nav-tab-solver"
             onClick={() => setActiveTab('solver')}
